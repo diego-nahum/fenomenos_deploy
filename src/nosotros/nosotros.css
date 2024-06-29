@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.Nosotros .header h1{
+    color: #333;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 36px;
+}
+
+.Nosotros {
+    margin-top: calc(60vh - 100px); 
+    padding-bottom: 50px; 
+    overflow-y: scroll; 
+}
+
+.team-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1800px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.team-member {
+    background-color: #C2C6DB;
+    color: #333;
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.team-member:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.team-member p {
+    transition: color 0.3s;
+}
+
+.team-member:hover p {
+    color: #fff;
+}
+
+.team-photo-container {
+    width: 100%;
+    height: 200px; 
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.team-photo {
+    width: 100%;
+    height: auto; 
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.team-member h3 {
+    font-size: 20px;
+}

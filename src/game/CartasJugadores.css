@@ -1,0 +1,19 @@
+/* .card-content img {
+    width: 70px;
+    height: auto;
+    cursor: pointer; /* Añade un cursor para indicar que se puede hacer clic */
+
+.card.arr-izq, .card.abj-izq {
+    transform: rotate(90deg);
+    transform-origin: center center;
+    margin: -50px;
+    margin-left: -110px;
+} 
+
+.card.arriba {
+    margin: -50px;
+}
+
+.card.actual {
+    margin: -20px;
+}
