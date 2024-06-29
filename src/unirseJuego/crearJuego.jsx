@@ -4,17 +4,22 @@ import Navbar from "../common/Navbar";
 import axios from "axios";
 import './crearJuego.css';
 import API_URL from "../common/config";
+import { AuthContext } from '../auth/AuthContext';
+import { useContext } from 'react';
 
 export default function CrearJuego() {
   const { id } = useParams(); 
   const [partida, setPartida] = useState(null);
   const navigate = useNavigate();
 
+  const { token } = useContext(AuthContext);
+
   useEffect(() => {
     const fetchPartida = async () => {
       try {
         const response = await axios.get(`${API_URL}/partida/${id}`);
         setPartida(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching the partida details", error);
       }
@@ -22,6 +27,11 @@ export default function CrearJuego() {
 
     fetchPartida();
   }, [id]);
+
+  const handleClick = async () => {
+    navigate(`/tablero/${id}`);
+  };
+  
 
   return (
     <div>
@@ -39,6 +49,9 @@ export default function CrearJuego() {
               ))}
             </ul>
           </div>
+          {partida.partidaListaParaIniciar && (
+            <button onClick={handleClick}>Comenzar Juego</button>
+          )}
         </div>
       ) : (
         <p>Cargando detalles de la partida...</p>

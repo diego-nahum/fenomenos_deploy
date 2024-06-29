@@ -3,10 +3,12 @@ import React, { useContext, useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../auth/AuthContext';
+import axios from 'axios';
 
 function MainPage() {
     const { token } = useContext(AuthContext);
     const [userData, setUserData] = useState({ username: '', email: '', name: '' });
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
         if (token && token !== "null") {
@@ -22,6 +24,31 @@ function MainPage() {
         const { username, email, name } = tokenPayload;
         setUserData({ username, email, name });
     }
+
+    useEffect(() => {
+        if (userData.email) {
+          fetchUsers();
+        }
+    }, [userData.email]);
+    
+    async function fetchUsers() {
+    axios({
+        method: 'get',
+        url: `${import.meta.env.VITE_BACKEND_URL}/users/`,
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    
+    }).then(response => {
+        const users = response.data;
+        setUsers(users);
+
+    }).catch(error => {
+        console.log(error);
+    });
+    }
+
+    const sortedUsers = users.length > 0 ? users.sort((a, b) => b.puntaje_total - a.puntaje_total) : [];
 
     return (
         <>
@@ -46,11 +73,9 @@ function MainPage() {
                         <section className="right-panel">
                             <h2>LEADERBOARD 🏆</h2>
                             <ol>
-                                <li>diego_nahum</li>
-                                <li>joseifr</li>
-                                <li>cabrera_h</li>
-                                <li>fenomeno4534</li>
-                                <li>javieragr</li>
+                                {sortedUsers.slice(0, 5).map((user) => (
+                                    <li key={user.id}>{user.username} - {user.puntaje_total}</li>
+                                ))}
                             </ol>
                         </section>
                     </main>
@@ -74,6 +99,7 @@ function MainPage() {
                         </NavLink>
                         <section className="right-panel">
                             <h2>LEADERBOARD 🏆</h2>
+                            <h4>Accede para ver la real! 🤩</h4>
                             <ol>
                                 <li>diego_nahum</li>
                                 <li>joseifr</li>

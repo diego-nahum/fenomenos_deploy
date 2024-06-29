@@ -31,7 +31,7 @@ function Routing(){
                 <Route path={"/profile-info"} element={<ProfileInfo/>}/>
                 <Route path={"/historial"} element={<Historial />}/>
                 <Route path={"/buscarpartida"} element={<BuscarPartidas />}/>
-                <Route path={"/tablero"} element={<Tablero />}/>
+                <Route path={"/tablero/:id"} element={<Tablero />}/>
                 <Route path={"/usercheck"} element={<UserCheck />}/>
                 <Route path={"/encontrarpartida"} element={<UnirseJuego/>}/>
                 <Route path={"/partida/:id"} element={<CrearJuego/>}/>

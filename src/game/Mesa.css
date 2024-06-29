@@ -27,14 +27,14 @@
 }
   
 .jugador-izquierda-arriba {
-    top: 30px; /* Ajustar según sea necesario */
+    top: 30px; 
     display: flex;
     align-items: center;
 }
   
 .jugador-izquierda-abajo {
     position: absolute;
-    bottom: 60px; /* Ajustar según sea necesario */
+    bottom: 60px; 
     display: flex;
     align-items: center;
 }
@@ -62,9 +62,6 @@
     display: flex;
 }
 
-/* .jugador-actual h3 {
-    flex-direction: row;
-} */
   
 .piramide {
     justify-content: left;
@@ -132,6 +129,7 @@
 }
 
 .fin-juego h1 {
+    color: aqua;
     font-size: 3em;
     margin-bottom: 20px;
 }

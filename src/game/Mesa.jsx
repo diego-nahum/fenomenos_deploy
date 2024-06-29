@@ -10,7 +10,7 @@ import { AuthContext } from '../auth/AuthContext';
 
 export const GameContext = createContext(null);
 
-export default function Mesa({ players, updatePlayers}) {
+export default function Mesa({ players, updatePlayers, id_partida}) {
   // Contexto de autenticación
   const { token } = useContext(AuthContext);
 
@@ -48,22 +48,26 @@ export default function Mesa({ players, updatePlayers}) {
   async function fetchUsers() {
     axios({
         method: 'get',
-        url: `${import.meta.env.VITE_BACKEND_URL}/users/`,
+        url: `${import.meta.env.VITE_BACKEND_URL}/partida/${id_partida}`,
         headers: {
             'Authorization': `Bearer ${token}`
         }
     
     }).then(response => {
-        const users = response.data;
+        const partida = response.data;
+
+        const jugadores = partida.jugadores
 
         // Actual 
-        const actual = users.find(user => user.mail === userData.email);
+        const actual = jugadores.find(user => user.mail === userData.email);
         if (currentUser === null) {
           setCurrentUser(actual);
         }
 
+        console.log(jugadores);
+
         // Resto de jugadores
-        const chosenUsers = users.filter(user => user.mail !== userData.email).slice(0, 3);
+        const chosenUsers = jugadores.filter(user => user.mail !== userData.email).slice(0, 3);
         setSelectedUsers(chosenUsers);
         
     }).catch(error => {
@@ -86,7 +90,7 @@ export default function Mesa({ players, updatePlayers}) {
   const [baraja, setBaraja] = useState({});
   const [cards, setCards] = useState({});
 
-  // const [cardsplayers, setCardsPlayers] = useState({});
+  // Seteo Jugadores
   const [jugadorArribaIzq, setJugadorArribaIzq] = useState({});
   const [jugadorAbajoIzq, setJugadorAbajoIzq] = useState({});
   const [jugadorArriba, setJugadorArriba] = useState({});
@@ -165,8 +169,6 @@ export default function Mesa({ players, updatePlayers}) {
     console.log(players);
     if (Object.keys(cartasPiramideVolteadas).length === 15) {
       setJuegoTerminado(true);
-
-      // Suponiendo que el ganador es el jugador actual, puedes ajustar esta lógica
       const jugadorConMasPuntaje = players.reduce((max, jugador) => {
         return jugador.puntaje > max.puntaje ? jugador : max;
       }, players[0])
@@ -217,7 +219,7 @@ export default function Mesa({ players, updatePlayers}) {
 
         // Sumar puntaje al jugador desafiado
         const jugadorQueSuma = players.find(jugador => jugador.nombre === jugadorDesafiadoNombre);
-        const nuevoPuntajeDesafiado = jugadorQueSuma.puntaje + baraja[cartaDesafiada].puntaje;
+        const nuevoPuntajeDesafiado = jugadorQueSuma.puntaje + baraja[cartaDesafiada].puntaje_asociado;
 
         // Actualizar jugadores (respetando inmutabilidad)
         const jugadoresActualizados = players.map(jugador => {
@@ -266,7 +268,7 @@ export default function Mesa({ players, updatePlayers}) {
 
         // Sumar puntaje al jugador actual
         const jugadorQueSuma = players.find(jugador => jugador.nombre === jugadorDesafianteNombre);
-        const nuevoPuntajeActual = jugadorQueSuma.puntaje + baraja[cartaDesafiada].puntaje;
+        const nuevoPuntajeActual = jugadorQueSuma.puntaje + baraja[cartaDesafiada].puntaje_asociado;
 
         // Actualizar
         const jugadoresActualizados = players.map(jugador => {
