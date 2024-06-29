@@ -1,0 +1,40 @@
+.partidas-containers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin-top: 60px;
+  }
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .container-infos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+    gap: 20px; 
+    width: 100%;
+    max-width: 1200px; 
+    margin-top: 20px;
+  }
+  
+  .opcion-infos {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .opcion-infos p {
+    margin: 10px 0;
+  }
+  
+  p {
+    margin: 10px 0;
+  }
+  

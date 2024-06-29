@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.MainPage .header {
+    color: #333;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.MainPage {
+    margin-top: 100px;
+}
+
+.container-mainpage {
+    display: flex;
+    justify-content: center;
+    gap: 40px; 
+    padding: 40px;
+}
+
+.left-panel, .right-panel {
+    background-color: #C2C6DB;
+    color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.left-panel {
+    width: 55%;
+}
+
+.right-panel {
+    width: 35%;
+}
+
+.left-panel:hover, .right-panel:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.left-panel:hover h2, 
+.left-panel:hover ul li,
+.right-panel:hover h2, 
+.right-panel:hover ol li {
+    color: #fff;
+}
+
+.left-panel h2, .right-panel h2 {
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+.left-panel ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.left-panel ul li {
+    padding: 10px 0;
+    font-size: 16px;
+}
+
+.right-panel ol {
+    padding-left: 20px;
+}
+
+.right-panel ol li {
+    font-size: 16px;
+    padding: 5px 0;
+}
